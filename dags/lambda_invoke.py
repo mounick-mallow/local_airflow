@@ -1,6 +1,6 @@
 import json
 from airflow import DAG
-from airflow.providers.amazon.aws.operators.lambda_function import AwsLambdaInvokeFunctionOperator
+from airflow.providers.amazon.aws.operators.lambda_function import LambdaInvokeFunctionOperator
 from airflow.utils.dates import days_ago
 
 # Define the default arguments for the DAG
@@ -20,7 +20,7 @@ with DAG(
 ) as dag:
 
     # Task to invoke the AWS Lambda function
-    invoke_lambda = AwsLambdaInvokeFunctionOperator(
+    invoke_lambda = LambdaInvokeFunctionOperator(
         task_id='invoke_lambda_function',
         function_name='test_lambda_function', 
         log_type='Tail',  
